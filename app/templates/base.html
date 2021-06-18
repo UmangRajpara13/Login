@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>{{ title }}</title>
+    </head>
+    <body>
+    <h1><a href="{{ url_for('index') }}">Empower</a></h1>
+        <div><a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('documentation') }}">Documentation</a>
+        <a href="{{ url_for('downloads') }}">Downloads</a>
+        <a href="{{ url_for('about') }}">About</a>
+        {% if current_user.is_anonymous %}
+        <a href="{{ url_for('login') }}">Login/SignUp</a>
+        {% else %}
+        <a href="{{ url_for('loggedIn') }}">My Account</a>
+        {% endif %}
+        </div>
+
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+
+    </body>
+</html>

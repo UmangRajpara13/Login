@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Sign In</h1>
+    <form action="" method="post" novalidate>
+<!--        form.hidden_tag protects against csrf attacks-->
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>
+        <a href="{{ url_for('reset_password_request') }}">Reset Password</a>
+        {{ form.login() }}</p>
+        <p>New User? <a href="{{ url_for('signup') }}">Click to Register!</a></p>
+
+        <meta name="68307030908-ck3chluftprultj324mjs4flkova8l13" content="68307030908-ck3chluftprultj324mjs4flkova8l13.apps.googleusercontent.com.apps.googleusercontent.com">
+        <div id="my-signin2"></div>
+          <script>
+            function onSuccess(googleUser) {
+              console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+            }
+            function onFailure(error) {
+              console.log(error);
+            }
+            function renderButton() {
+              gapi.signin2.render('my-signin2', {
+                'scope': 'profile email',
+                'width': 240,
+                'height': 50,
+                'longtitle': true,
+                'theme': 'dark',
+                'onsuccess': onSuccess,
+                'onfailure': onFailure
+              });
+            }
+          </script>
+
+          <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <a href="{{ url_for('login_google') }}"><button type="button" style="background:#4285f4; color:white; border:none; width:110px; height:40px; border-radius:3%;"><img src="https://www.iconfinder.com/data/icons/social-media-2210/24/Google-512.png" style="width:30px; background:white; border-radius:50%;" alt=""><b style="top: -10px; left: 5px; position: relative">Google</b></button></a>
+    </form>
+{% endblock %}
