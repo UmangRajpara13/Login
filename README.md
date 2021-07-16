@@ -5,10 +5,11 @@ A small implementation using boto3 is available in this repo, which connects to 
 
 To run the application
 
->create virtual environment
->install requirements
+create virtual environment and activate
 
-and finally
+>pip3 install -r requirements.txt 
+
+then
 
 >python3 application.py
 
