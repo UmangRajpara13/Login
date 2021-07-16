@@ -11,7 +11,7 @@ def send_email(subject, sender, recipients, text_body, html_body):
 
 def send_password_reset_email(user):
     token = user.get_reset_password_token()
-    send_email('[Empower] Reset Your Password',
+    send_email('Reset Your Password',
                sender='sender@gmail.com',
                recipients=[user.username],
                text_body=render_template('email/reset_password.txt',
